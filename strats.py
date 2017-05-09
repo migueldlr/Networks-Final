@@ -1,5 +1,15 @@
 import random
 
+'''
+Format:
+## Name
+## Description
+def funcname(h,oh1,oh2):
+	Either 'c' or 'd' based on strategy
+
+
+'''
+
 ## Random
 ## 50-50
 def random(h, oh1, oh2):
@@ -14,3 +24,4 @@ def alwaysc(h,oh1,oh2):
 ## Always defect
 def alwaysd(h,oh1,oh2):
 	return 'd'
+
