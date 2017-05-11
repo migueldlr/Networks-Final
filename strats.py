@@ -50,6 +50,8 @@ def agrudger(h, oh1, oh2):
 def agrudger2(h, oh1, oh2):
 	return 'c' if ('c' in oh1) and ('c' in oh2) else 'd'
 
+## RandomTFT
+## Choose one of the opponent's choices from last turn
 def randomtft(h, oh1, oh2):
 	if len(h)!=0:
 		return oh1[-1] if random.random()<0.5 else oh2[-1]

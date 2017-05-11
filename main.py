@@ -1,4 +1,14 @@
-import strats, random, inspect
+##################################################################################
+# 3-Player Axelrod's Tournament                                                  #
+# MA468 Networks - D Block                                                       #
+# Miguel de los Reyes, Angela Deng, Nikhil Reddy, Sreeram Venkat                 #
+# May 2017                                                                       #
+##################################################################################
+
+import random, inspect
+
+## Import our stuff
+import strats
 from player import Player
 
 NUM_ROUNDS = 20
@@ -11,22 +21,32 @@ functions = [x[1] for x in s]
 ## Initialize Player objects
 players = [Player(names[i], functions[i]) for i in range(len(names))]
 
+## Print some information
+print("3-Player Axelrod's Between {} Strategies, {} Rounds/Game".format(len(players), NUM_ROUNDS))
+
+
+def getscores(p1h, p2h, p3h):
+	for i in range(NUM_ROUNDS):
+		
+def play(p1, p2, p3):
+	p1h = []
+	p2h = []
+	p3h = []
+
+	for i in range(NUM_ROUNDS):
+		p1m = p1.nextMove(p1h, p2h, p3h)
+		p2m = p2.nextMove(p2h, p3h, p1h)
+		p3m = p3.nextMove(p3h, p1h, p2h)
+
+		p1h.append(p1m)
+		p2h.append(p2m)
+		p3h.append(p3m)
+
+	print(p1h, p2h, p3h)
+
+
 for p1 in players:
 	for p2 in players:
 		for p3 in players:
-			# print(p3.name)
-			p1h = []
-			p2h = []
-			p3h = []
-
-			for i in range(NUM_ROUNDS):
-				p1m = p1.nextMove(p1h, p2h, p3h)
-				p2m = p2.nextMove(p2h, p3h, p1h)
-				p3m = p3.nextMove(p3h, p1h, p2h)
-
-				p1h.append(p1m)
-				p2h.append(p2m)
-				p3h.append(p3m)
-
-			# print(p1h, p2h, p3h)
+			play(p1,p2,p3)
 
