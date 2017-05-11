@@ -12,7 +12,7 @@ def funcname(h,oh1,oh2):
 
 ## Random
 ## 50-50
-def rand(h, oh1, oh2):
+def alwaysrand(h, oh1, oh2):
 	return 'c' if random.random() < 0.5 else 'd'
 
 ## Cooperate

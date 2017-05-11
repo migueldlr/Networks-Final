@@ -8,6 +8,8 @@ class Player:
 		self.pf = 0     # points for
 		self.pa = 0     # points against
 
+	def __repr__(self):
+		return "{}:\t{}-{}-{}\t{}:{}".format(self.name, self.w, self.t, self.l, self.pf, self.pa)
 	# Determine my next move based on
 	# h - my history (list)
 	# oh1 and oh2 - my opponents' history
