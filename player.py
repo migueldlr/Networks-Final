@@ -11,6 +11,6 @@ class Player:
 	# Determine my next move based on
 	# h - my history (list)
 	# oh1 and oh2 - my opponents' history
-	def nextMove(h, oh1, oh2):
+	def nextMove(self, h, oh1, oh2):
 		return self.stratFunction(h,oh1,oh2)
 

@@ -12,7 +12,7 @@ def funcname(h,oh1,oh2):
 
 ## Random
 ## 50-50
-def random(h, oh1, oh2):
+def rand(h, oh1, oh2):
 	return 'c' if random.random() < 0.5 else 'd'
 
 ## Cooperate
@@ -52,6 +52,7 @@ def agrudger2(h, oh1, oh2):
 
 def randomtft(h, oh1, oh2):
 	if len(h)!=0:
-		return oh1[-1] if random()<0.5 else oh2[-1]
+		return oh1[-1] if random.random()<0.5 else oh2[-1]
 	else:
 		return 'c'
+
