@@ -13,6 +13,11 @@ from player import Player
 
 NUM_ROUNDS = 200
 
+##Aggravation constants
+cooldown = 2
+athresh = 10
+ainc = 2
+
 ## Get names/functions from strats
 s = inspect.getmembers(strats, inspect.isfunction)
 names = [x[0] for x in s]
@@ -21,8 +26,6 @@ functions = [x[1] for x in s]
 ## Initialize Player objects
 players = [Player(names[i], functions[i]) for i in range(len(names))]
 
-## Print some information
-print("3-Player Axelrod's Between {} Strategies, {} Rounds/Game".format(len(players), NUM_ROUNDS))
 
 
 def getscores(p1h, p2h, p3h):
@@ -104,16 +107,18 @@ def updateresults(p1, p2, p3, scores):
 		p1.t += 1
 		p2.t += 1
 		p3.t += 1
-
-
-
-for p1 in players:
-	for p2 in players:
-		for p3 in players:
-			s = play(p1,p2,p3)
-			updateresults(p1,p2,p3,s)
-
-players = sorted(players, key=lambda p: p.pf, reverse=True)
-print("{}:\t\t{}-{}-{}\t\t{}:{}".format("name", "w", "t", "l", "pf", "pa"))
-for p in players:
-	print(p)
+if __name__ == "main":
+    ## Print some information
+    print("3-Player Axelrod's Between {} Strategies, {} Rounds/Game".format(len(players), NUM_ROUNDS))
+    
+    for p1 in players:
+    	for p2 in players:
+    		for p3 in players:
+    			s = play(p1,p2,p3)
+    			updateresults(p1,p2,p3,s)
+    
+    players = sorted(players, key=lambda p: p.pf, reverse=True)
+    
+    for p in players:
+    	print(p)
+  
