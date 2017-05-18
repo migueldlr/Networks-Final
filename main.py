@@ -11,7 +11,7 @@ import random, inspect
 import strats
 from player import Player
 
-NUM_ROUNDS = 20
+NUM_ROUNDS = 200
 
 ## Get names/functions from strats
 s = inspect.getmembers(strats, inspect.isfunction)
@@ -114,6 +114,6 @@ for p1 in players:
 			updateresults(p1,p2,p3,s)
 
 players = sorted(players, key=lambda p: p.pf, reverse=True)
-
+print("{}:\t\t{}-{}-{}\t\t{}:{}".format("name", "w", "t", "l", "pf", "pa"))
 for p in players:
 	print(p)

@@ -10,6 +10,10 @@ def funcname(h,oh1,oh2):
 
 '''
 
+COOLDOWN = 2
+ATHRESH = 10
+AINC = 2
+
 ## Random
 ## 50-50
 def alwaysrand(h, oh1, oh2):
@@ -57,4 +61,45 @@ def randomtft(h, oh1, oh2):
 		return oh1[-1] if random.random()<0.5 else oh2[-1]
 	else:
 		return 'c'
+
+## Aggravation
+## Cooperate. Every time an opponent defects, your aggravation increases.
+## When your aggravation level exceeds a value, defect, and aggravation goes down. 
+def aggravation(hist, ohist, o2hist):
+	global AINC, COOLDOWN, ATHRESH
+	alevel = (ohist.count("d") + o2hist.count("d"))*AINC - COOLDOWN*len(hist)
+	return "d" if alevel >= ATHRESH else "c"
+
+# ## Envy
+# ## Defect when the opponents’ average total score is higher than yours
+# def envy(points, opoints, o2points):
+# 	return "d" if ((sum(opoints) + sum(o2points))/(len(opoints) + len(o2points))) > (sum(points)/len(points)) else "c"
+
+## Shubik
+## Retaliate with single defection but defect for 1 more turn each time another opponent defects when this cooperates
+def shuuuubik(hist, ohist, o2hist):
+	count = 0
+	for i in range(len(ohist)):
+		if hist[i] == "c" and (ohist[i] == "d" or o2hist[i] == "d"):
+			count += 1
+	count -= (len(hist) - ''.join(hist).rfind('c') - 1)
+	return "d" if count > 0 else "c"
+
+def pickonetft(hist, ohist, o2hist):
+	if len(hist)==0:
+		return 'c'
+	else:
+		return ohist[-1]
+
+def nicexor(hist, ohist. o2hist):
+	if len(hist)==0:
+		return 'c'
+	else:
+		return 'd' if (ohist[-1]=='c')!=(o2hist[-1]=='c') else 'c'
+
+def niceor(hist, ohist. o2hist):
+	if len(hist)==0:
+		return 'c'
+	else:
+		return 'd' if (ohist[-1]) or o2hist[-1] else 'c'
 
